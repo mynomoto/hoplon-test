@@ -6,6 +6,13 @@ This project presents a minimal setup for Hoplon using boot2.
 - [boot][boot]
 
 ## Usage
+### Setup
+1. Install `npm`.
+
+2. In a terminal run:
+    ```bash
+    $ npm install
+    ```
 ### Development
 1. Start the `dev` task. In a terminal run:
     ```bash
