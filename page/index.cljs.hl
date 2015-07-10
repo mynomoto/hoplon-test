@@ -1,0 +1,10 @@
+(page "index.html"
+  (:require
+    [hoplon-test.core :as c]))
+
+(html
+  (head
+    (title "Hoplon Tops"))
+  (body
+    (div
+      (c/tops-component c/state))))

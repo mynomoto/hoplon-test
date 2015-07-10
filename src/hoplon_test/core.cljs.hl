@@ -1,0 +1,37 @@
+(ns hoplon-test.core
+  (:require
+    [clojure.string :as str]))
+
+(defc state [])
+
+(defn add-word [ws w]
+  (swap! ws #(conj (vec (take-last 9 %)) w)))
+
+(defn word-item [word]
+  (li (text "~{word}")))
+
+(defn word-list [ws]
+  (ul
+    (loop-tpl :bindings [word (cell= (reverse ws))]
+      (word-item word))))
+
+(defn word-input [ws]
+  (let [user-input (cell "")]
+    (div
+      (input
+        :type "text"
+        :value user-input
+        :blur #(reset! user-input @%))
+      (span
+        (button
+          :click #(when-not (str/blank? @user-input)
+                    (add-word ws @user-input)
+                    (reset! user-input ""))
+          "Submit")))))
+
+(defn tops-component [ws]
+  (div :class "row"
+    (div :col {:lg 4 :md 5 :sm 6}
+      (h1 "Hoplon Tops")
+      (word-input ws)
+      (word-list ws))))
